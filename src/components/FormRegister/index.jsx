@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useHistory } from "react-router";
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, Select, MenuItem } from "@material-ui/core";
 import axios from "axios";
 import "./styles.css";
 
@@ -113,8 +113,17 @@ const FormRegister = () => {
               helperText={errors.contact?.message}
             />
           </div>
+
+          {/* <Select name="Course module">
+            <option value="first">1º module, frontend intro</option>
+            <option value="second">2º module, frontend advanced</option>
+            <option value="third">3º module, backend intro</option>
+            <option value="quarter">4º module, backend advanced</option>
+          </Select> */}
+
           <div>
             <TextField
+              id="select"
               label="Course module"
               margin="normal"
               variant="outlined"
@@ -123,7 +132,13 @@ const FormRegister = () => {
               {...register("course_module")}
               error={!!errors.course_module}
               helperText={errors.course_module?.message}
-            />
+              select
+            >
+              <MenuItem value="1º_Module">1º module</MenuItem>
+              <MenuItem value="2º_Module">2º module</MenuItem>
+              <MenuItem value="3º_Module">3º module</MenuItem>
+              <MenuItem value="4º_Module">4º module</MenuItem>
+            </TextField>
           </div>
           <div>
             <Button color="primary" type="submit" variant="contained">

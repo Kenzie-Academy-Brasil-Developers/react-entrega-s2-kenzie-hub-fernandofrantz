@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, MenuItem } from "@material-ui/core";
 import axios from "axios";
 import { useState } from "react";
 import "./styles.css";
@@ -73,6 +73,7 @@ const CreateTechs = ({ token, user }) => {
           </div>
           <div>
             <TextField
+              id="select"
               label="Status"
               margin="normal"
               variant="outlined"
@@ -81,7 +82,12 @@ const CreateTechs = ({ token, user }) => {
               {...register("status")}
               error={!!errors.status}
               helperText={errors.status?.message}
-            />
+              select
+            >
+              <MenuItem value="begginer">Begginer</MenuItem>
+              <MenuItem value="intermediary">Intermediary</MenuItem>
+              <MenuItem value="master">Master</MenuItem>
+            </TextField>
           </div>
           <div>
             <Button
