@@ -6,7 +6,7 @@ import { TextField, Button } from "@material-ui/core";
 import axios from "axios";
 import "./styles.css";
 
-const LandingPage = () => {
+const LandingPage = ({ setIsLoggedIn }) => {
   const history = useHistory({});
 
   const formSchema = yup.object().shape({
@@ -37,7 +37,9 @@ const LandingPage = () => {
       .then((res) => {
         console.log(res);
         // localStorage.clear();
+        setIsLoggedIn(true);
         localStorage.setItem("token", JSON.stringify(res.data.token));
+
         history.push("/home");
       })
       .catch((err) => console.log(err));

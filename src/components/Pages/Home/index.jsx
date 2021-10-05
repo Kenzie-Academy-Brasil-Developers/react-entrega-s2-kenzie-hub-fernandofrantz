@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import CreateTechs from "../../CreateTechs";
 
-const Home = () => {
+const Home = ({ isLoggedIn }) => {
   const [user, setUser] = useState({});
   const [token, setToken] = useState(() => {
     const localToken = localStorage.getItem("token") || "";
@@ -20,8 +20,13 @@ const Home = () => {
 
   return (
     <>
-      <h2> - Bem vindo(a), {user.name}!</h2>
-      <CreateTechs token={token} user={user} />
+      {isLoggedIn && (
+        <div>
+          <h2> - Bem vindo(a), {user.name}!</h2>
+          <CreateTechs token={token} user={user} />
+        </div>
+      )}
+      {isLoggedIn === false && <h1>Você não está logado.</h1>}
     </>
   );
 };
